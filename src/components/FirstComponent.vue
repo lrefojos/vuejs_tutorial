@@ -10,6 +10,7 @@
       </li>
       <img :src="source" alt="" />
     </ul>
+    <p :style="classObject">Is in danger?</p>
   </div>
 </template>
 
@@ -25,6 +26,10 @@ export default {
       { name: "Elemento 3", id: 3 },
     ],
     source: "https://i.imgur.com/BBcy6Wc.jpg",
+    classObject: {
+      background: "pink",
+      fontSize: "16px",
+    },
   }),
 };
 </script>
