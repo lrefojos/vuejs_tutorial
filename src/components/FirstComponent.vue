@@ -8,6 +8,7 @@
       <li v-for="(item, i) in elements" :key="i">
         ID: {{ item.id }} - {{ item.name }}
       </li>
+      <img :src="source" alt="" />
     </ul>
   </div>
 </template>
@@ -23,6 +24,7 @@ export default {
       { name: "Elemento 2", id: 2 },
       { name: "Elemento 3", id: 3 },
     ],
+    source: "https://i.imgur.com/BBcy6Wc.jpg",
   }),
 };
 </script>
