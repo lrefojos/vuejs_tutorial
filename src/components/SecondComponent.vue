@@ -5,13 +5,26 @@
       <button class="content__button" @click="increment()">Increment</button>
       <span> Current value {{ value }}</span>
     </div>
+    <div class="computed">
+      <button @click="counterComputed++">Computed button</button>
+      <p>{{ counterComputed }}</p>
+      <br />
+      <button @click="counterMethod++">Method button</button>
+      <p>{{ counterMethod }}</p>
+      {{ printTextMethod() }}
+      {{ printTextComputed }}
+    </div>
   </div>
 </template>
 
 <script>
+// more info about computed vs methods properties
+// https://medium.com/notonlycss/the-difference-between-computed-and-methods-in-vue-js-9cb05c59ed98
 export default {
   data: () => ({
     value: 20,
+    counterComputed: 0,
+    counterMethod: 0,
   }),
   methods: {
     calculate() {
@@ -19,6 +32,16 @@ export default {
     },
     increment() {
       this.value++;
+    },
+    printTextMethod() {
+      console.log(`counter printed from method: ${this.counterMethod} `);
+    },
+  },
+  computed: {
+    printTextComputed() {
+      return console.log(
+        `counter printed from computed: ${this.counterComputed}`
+      );
     },
   },
 };
