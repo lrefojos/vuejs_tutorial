@@ -9,6 +9,7 @@
         :class="{ 'task__list-completed': task.completed }"
         v-for="(task, i) in tasks"
         :key="'task' + i"
+        @click="completedTask(task.text)"
       >
         {{ task.text }}
       </li>
@@ -31,6 +32,10 @@ export default {
       this.tasks.push(task);
       this.newTask = "";
       console.log(this.tasks);
+    },
+    completedTask(taskText) {
+      let task = this.tasks.find((task) => task.text === taskText);
+      task.completed = true;
     },
   },
 };
