@@ -4,7 +4,7 @@
       <label class="task__label" for="task">Nueva tarea: </label>
       <input class="task__input" type="text" v-model="newTask" id="task" />
       <input class="task__button" type="submit" value="Crear tarea" />
-      <ul class="task__list">
+      <ul class="task__list" aria-label="taksList">
         <li
           class="task__element"
           :class="{ 'task__element-completed': task.completed }"
