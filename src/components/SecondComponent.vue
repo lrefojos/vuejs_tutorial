@@ -6,26 +6,41 @@
       <span> Current value {{ value }}</span>
     </div>
     <div class="computed">
-      <button @click="counterComputed++">Computed button</button>
-      <p>{{ counterComputed }}</p>
-      <br />
+      <add-button :sumando="10" @msg-child="childResponse" />
+
+      <!-- <button @click="suma(5)">Computed button</button> -->
+      <!-- <p>{{ value }}</p> -->
+      <!-- <br />
       <button @click="counterMethod++">Method button</button>
       <p>{{ counterMethod }}</p>
       {{ printTextMethod() }}
-      {{ printTextComputed }}
+      {{ printTextComputed }} -->
     </div>
   </div>
 </template>
 
 <script>
+import AddButton from "@/components/AddButton";
+
 // more info about computed vs methods properties
 // https://medium.com/notonlycss/the-difference-between-computed-and-methods-in-vue-js-9cb05c59ed98
 export default {
+  components: {
+    AddButton,
+  },
   data: () => ({
     value: 20,
     counterComputed: 0,
     counterMethod: 0,
   }),
+  // no aceptan parametros de entrada, siempre tiene que hacer un return (usadas para pintar en la vista)
+  computed: {
+    printTextComputed() {
+      return console.log(
+        `counter printed from computed: ${this.counterComputed}`
+      );
+    },
+  },
   methods: {
     calculate() {
       return this.value * 2;
@@ -36,12 +51,26 @@ export default {
     printTextMethod() {
       console.log(`counter printed from method: ${this.counterMethod} `);
     },
+    suma(sumando) {
+      this.value = this.value + sumando;
+      console.log("VALUE", this.value);
+    },
+    childResponse(e) {
+      console.log(e);
+    },
   },
-  computed: {
-    printTextComputed() {
-      return console.log(
-        `counter printed from computed: ${this.counterComputed}`
-      );
+  created() {
+    console.log("Value in created ", this.value);
+  },
+  watch: {
+    // value(newValue, oldValue) {
+    //   console.log("WATCH-VALUE", newValue, oldValue);
+    // },
+    value: {
+      handler: function (newValue, oldValue) {
+        console.log("WATCH-VALUE", newValue, oldValue);
+      },
+      immediate: true,
     },
   },
 };
@@ -58,4 +87,4 @@ export default {
     background-color: lightcoral;
   }
 }
-</style>;
+</style>
